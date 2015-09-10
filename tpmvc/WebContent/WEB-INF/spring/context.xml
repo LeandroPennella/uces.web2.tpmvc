@@ -14,10 +14,7 @@
 		<property name="location" value="classpath:resources/conf/application.properties" />
 	</bean>
 
-	<context:component-scan base-package="ar.edu.uces.progweb2.tpmvc.controller.simple" />
-	<context:component-scan base-package="ar.edu.uces.progweb2.tpmvc.controller.simple" />
-	<context:component-scan base-package="ar.edu.uces.progweb2.tpmvc.service" />
-	<context:component-scan base-package="ar.edu.uces.progweb2.tpmvc.validator" />
+	<context:component-scan base-package="ar.edu.uces.progweb2.tpmvc.controller" />
 
 	<mvc:annotation-driven />
 
@@ -27,11 +24,13 @@
 	</bean>
 
 	<!-- for file upload -->
+	<!-- 
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="maxUploadSize" value="250000000000" />
 	</bean>
+ 	-->
 
-	<import resource="/json-mapper-context.xml" />
-	<!-- <import resource="/hibernate-context.xml" /> -->
+	
+
 
 </beans>
