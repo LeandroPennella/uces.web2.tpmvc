@@ -14,13 +14,13 @@
 		<property name="location" value="classpath:resources/conf/application.properties" />
 	</bean>
 
-	<context:component-scan base-package="ar.edu.uces.progweb2.tpmvc.controller" />
+	<context:component-scan base-package="ar.edu.uces.progweb2.tpmvc" />
 
 	<mvc:annotation-driven />
 
 	<!-- message resources -->
 	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
-		<property name="basename" value="resources/messages" />
+		<property name="basename" value="resources/mensajes" />
 	</bean>
 
 	<!-- for file upload -->
