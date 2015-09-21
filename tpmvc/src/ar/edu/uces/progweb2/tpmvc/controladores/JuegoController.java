@@ -21,6 +21,14 @@ public class JuegoController {
 			return "/views/index.jsp";
 		}
 
+		@RequestMapping(value = "/identificarUsuario")
+		public ModelAndView identificarUsuario() {
+			ModelAndView modelAndView =new ModelAndView("/views/identificarJugador.jsp");
+			//modelAndView.addObject("partida",new Partida());
+			return modelAndView;
+		}
+
+		
 		@RequestMapping(value = "/iniciarPartida")
 		public ModelAndView iniciarPartida() {
 			ModelAndView modelAndView =new ModelAndView("/views/partida.jsp");

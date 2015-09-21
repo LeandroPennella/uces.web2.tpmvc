@@ -10,6 +10,7 @@ public class Partida {
 	private int numeroADescubrir;
 	private List<Intento> intentos;
 	private Intento ultimoIntento;
+	
 	public Partida()
 	{
 		Random random =new Random();
