@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Juego {
 
-	private List<Partida> partidas;
+	//private List<Partida> partidas;
 	private List<Jugador> jugadores;
 	
 }

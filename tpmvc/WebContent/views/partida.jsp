@@ -11,7 +11,7 @@
 </head>
 <body>
 	<h1>Complete el formulario</h1>
-	<form:form method="POST" commandName="juego" action="procesarIntento.do">
+	<form:form method="POST" commandName="partida" action="procesarIntento.do">
 		<form:label path="valorElegido">
 			<fmt:message key="partida.label.valorElegido" />
 		</form:label>

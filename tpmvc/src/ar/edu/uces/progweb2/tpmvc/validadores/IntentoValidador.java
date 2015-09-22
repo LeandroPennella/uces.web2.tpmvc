@@ -4,7 +4,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
+
 import ar.edu.uces.progweb2.tpmvc.modelo.Intento;
+
 
 @Component
 public class IntentoValidador implements Validator {

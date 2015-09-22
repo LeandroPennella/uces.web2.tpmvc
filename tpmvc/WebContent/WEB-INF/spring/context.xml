@@ -14,6 +14,7 @@
 		<property name="location" value="classpath:resources/conf/application.properties" />
 	</bean>
 
+	<!-- donde va a buscar los componentes -->
 	<context:component-scan base-package="ar.edu.uces.progweb2.tpmvc" />
 
 	<mvc:annotation-driven />
@@ -23,12 +24,6 @@
 		<property name="basename" value="resources/mensajes" />
 	</bean>
 
-	<!-- for file upload -->
-	<!-- 
-	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<property name="maxUploadSize" value="250000000000" />
-	</bean>
- 	-->
 
 	
 
