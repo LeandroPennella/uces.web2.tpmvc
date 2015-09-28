@@ -30,10 +30,6 @@ public class JuegoController {
 
 		@RequestMapping(value = "/identificarJugador")
 		public ModelAndView identificarJugador() {
-			
-			//ModelAndView modelAndView =new ModelAndView("/views/identificarJugador.jsp");
-			//modelAndView.addObject("jugador", new Jugador());
-			
 			return new ModelAndView("/views/identificarJugador.jsp","jugador", new Jugador());
 		}
 
