@@ -23,8 +23,12 @@ public class JuegoController {
 		@Autowired
 		private JugadorValidador jugadorValidador;
 		
+		private Jugador jugador; 
+		private Partida partida;
+		
 		@RequestMapping(value = "/juego")
 		public String init() {
+			jugador=new Jugador();
 			return "/views/index.jsp";
 		}
 
@@ -34,7 +38,7 @@ public class JuegoController {
 			//ModelAndView modelAndView =new ModelAndView("/views/identificarJugador.jsp");
 			//modelAndView.addObject("jugador", new Jugador());
 			
-			return new ModelAndView("/views/identificarJugador.jsp","jugador", new Jugador());
+			return new ModelAndView("/views/identificarJugador.jsp","jugador", jugador);
 		}
 
 		@RequestMapping(value = "/validarJugador")
@@ -49,8 +53,9 @@ public class JuegoController {
 	
 		@RequestMapping(value = "/iniciarPartida")
 		public ModelAndView iniciarPartida() {
+			partida=new Partida(jugador);
 			ModelAndView modelAndView =new ModelAndView("/views/partida.jsp");
-			modelAndView.addObject("partida",new Partida());
+			modelAndView.addObject("partida",partida);
 			return modelAndView;
 		}
 
