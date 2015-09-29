@@ -10,12 +10,16 @@ public class Partida {
 	private int numeroADescubrir;
 	private List<Intento> intentos;
 	private Intento ultimoIntento;
-	
-	public Partida()
-	{
-		Random random =new Random();
-		this.numeroADescubrir=random.nextInt(100);
-		this.intentos=new ArrayList<Intento>();
+
+	public Partida() {
+		Random random = new Random();
+		this.numeroADescubrir = random.nextInt(100);
+		this.intentos = new ArrayList<Intento>();
+	}
+
+	public Partida(Jugador jugador) {
+		super();
+		this.jugador = jugador;
 	}
 
 	public Jugador getJugador() {
@@ -36,9 +40,11 @@ public class Partida {
 
 	public void addIntento(Intento intento) {
 		this.intentos.add(intento);
-		this.ultimoIntento=intento;
+		this.ultimoIntento = intento;
 	}
-	
-	public Intento getUltimoIntento(){return this.ultimoIntento;}
-	
+
+	public Intento getUltimoIntento() {
+		return this.ultimoIntento;
+	}
+
 }
