@@ -14,6 +14,9 @@
 		<property name="location" value="classpath:resources/conf/application.properties" />
 	</bean>
 
+	<!--  -->
+	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver"></bean>
+
 	<!-- donde va a buscar los componentes -->
 	<context:component-scan base-package="ar.edu.uces.progweb2.tpmvc" />
 
