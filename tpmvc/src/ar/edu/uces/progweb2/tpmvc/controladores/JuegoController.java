@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -13,6 +14,7 @@ import ar.edu.uces.progweb2.tpmvc.validadores.IntentoValidador;
 import ar.edu.uces.progweb2.tpmvc.validadores.JugadorValidador;
 
 
+@SessionAttributes("partida")
 
 @Controller
 
@@ -23,22 +25,14 @@ public class JuegoController {
 		@Autowired
 		private JugadorValidador jugadorValidador;
 		
-		private Jugador jugador; 
-		private Partida partida;
-		
 		@RequestMapping(value = "/juego")
 		public String init() {
-			jugador=new Jugador();
 			return "/views/index.jsp";
 		}
 
 		@RequestMapping(value = "/identificarJugador")
 		public ModelAndView identificarJugador() {
-			
-			//ModelAndView modelAndView =new ModelAndView("/views/identificarJugador.jsp");
-			//modelAndView.addObject("jugador", new Jugador());
-			
-			return new ModelAndView("/views/identificarJugador.jsp","jugador", jugador);
+			return new ModelAndView("/views/identificarJugador.jsp","jugador", new Jugador());
 		}
 
 		@RequestMapping(value = "/validarJugador")
@@ -52,19 +46,20 @@ public class JuegoController {
 		}
 	
 		@RequestMapping(value = "/iniciarPartida")
-		public ModelAndView iniciarPartida() {
-			partida=new Partida(jugador);
+		public ModelAndView iniciarPartida(@ModelAttribute("jugador") Jugador jugador) {
+			
+			//todo:validar que haya jugador 
 			ModelAndView modelAndView =new ModelAndView("/views/partida.jsp");
-			modelAndView.addObject("partida",partida);
+			modelAndView.addObject("partida",new Partida(jugador));
 			return modelAndView;
 		}
 
-		@RequestMapping(value = "/procesarIntento")
-		
+		@RequestMapping(value = "/procesarIntento")	
 		public ModelAndView procesarIntento(@ModelAttribute("partida") Partida partida, BindingResult result, SessionStatus status) {
+			//todo: validar que haya partida
 			this.intentoValidador.validate(partida.getUltimoIntento(), result);	
 			if (partida.getNumeroADescubrir()==partida.getUltimoIntento().getValorElegido()){
-				return new ModelAndView("/views/gano.jsp");
+				return new ModelAndView("/views/gano.do");
 			} else {
 				return new ModelAndView("/views/partida.jsp");
 			}
