@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.jsp.jstl.core.Config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -49,6 +50,7 @@ public class JuegoController {
 		public ModelAndView identificarJugador(HttpServletRequest request, HttpServletResponse response) {
 			//LocaleResolver localeResolver = RequestContextUtils.getLocaleResolver(request);
 			//localeResolver.setLocale(request, response, new Locale("es_AR") );
+			//Config.set(request.getSession(), Config.FMT_LOCALE, new java.util.Locale("es"));
 			Map<String,String> idiomas= new LinkedHashMap<String,String>();
 			idiomas.put("es_AR", "Castellano");
 			idiomas.put("en_US", "Ingles");
