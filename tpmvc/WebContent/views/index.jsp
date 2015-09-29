@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-hola
+<a href="identificarJugador.do">Iniciar</a>
 </body>
 </html>

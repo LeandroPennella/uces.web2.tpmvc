@@ -11,13 +11,25 @@
 
 </head>
 <body>
-	<h1>Complete el formulario</h1>
+
+	<fmt:setLocale value="es_AR" scope="session"/>
+	<fmt:setBundle basename="resources.mensajes" var="x"/>
+	<h1><fmt:message bundle="${x}" key="jugador.label.identifiquese" /></h1>
+	
+	
 	<form:form method="POST" commandName="jugador" action="validarJugador.do">
+		<!-- nombre -->
 		<form:label path="nombre">
-			<fmt:message key="jugador.label.identifiquese" />
+			<fmt:message bundle="${x}" key="jugador.label.identifiquese" />
 		</form:label>
 		<form:input path="nombre" />
 		<form:errors path="nombre" cssStyle="color: red" />
+		
+		<!-- idiomas -->
+		
+		<form:select id="idioma" path="idioma">
+		  <form:options items="${idiomas}"/>
+		</form:select>
 		<form:button>Comenzar!</form:button>
 	</form:form>
 </body>

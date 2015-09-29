@@ -10,10 +10,16 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>Complete el formulario</h1>
-	<form:form method="POST" commandName="partida" action="procesarIntento.do">
-	
-		<form:input path="numeroADescubrir" />
+	<h1><fmt:message key="partida.titulo"></fmt:message></h1>
+	Jugador: ${partida.getJugador().getNombre()}
+	<c:if test="${partida.intentos} }">
+	<c:forEach var="intento" items="${partida.intentos} }">
+	${intento.getValorElegido} -> ${intento.getDiferencia} 
+	</c:forEach>
+	</c:if>
+	<form:form method="POST" commandName="intento" action="procesarIntento.do">
+		
+		
 		<form:label path="valorElegido">
 			<fmt:message key="partida.label.valorElegido" />
 		</form:label>
