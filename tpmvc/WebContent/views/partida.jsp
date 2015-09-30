@@ -13,7 +13,7 @@
 <body>
 	<h1><fmt:message key="partida.titulo"></fmt:message></h1>
 	Jugador: ${partida.getJugador().getNombre()}<br/>
-
+	<c:url value="/partida/iniciarPartida.do">Reiniciar</c:url>
 	<a href="${pageContext.request.contextPath}/partida/iniciarPartida.do">ReIniciar</a>
 
 	<h2>Intentos</h2>
@@ -24,11 +24,13 @@
 	</c:forEach>
 	<jsp:include page="estadisticas.jsp"></jsp:include>
 	
-	<form:form method="POST" commandName="intento" action="${pageContext.request.contextPath}/partida/procesarIntento.do">
+	<c:url value="/partida/procesarIntento.do" var="x"></c:url>
+
+	<form:form method="POST" commandName="intento" action="${x}">
 		<form:label path="valorElegido">
 			<fmt:message key="partida.label.valorElegido" />
 		</form:label>
-		<form:input path="valorElegido" />
+		<form:input path="valorElegido"></form:input>
 		<form:errors path="valorElegido" cssStyle="color: red" />
 		<form:button>Intentar!</form:button>
 	</form:form>

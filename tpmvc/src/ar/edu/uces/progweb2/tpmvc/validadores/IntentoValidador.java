@@ -19,12 +19,11 @@ public class IntentoValidador implements Validator {
 	@Override
 	public void validate(Object object, Errors errors) {
 		Intento intento= (Intento) object;
-		//ValidationUtils.rejectIfEmptyOrWhitespace(errors, "valorElegido", "error.intento.valor.vacio");
-		
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "valorElegido", "error.intento.valor.vacio");
 		
 		if (!errors.hasFieldErrors("valorElegido")) {
 			if ((intento.getValorElegido()<1)||(intento.getValorElegido()>100)) {
-				errors.rejectValue("name", "error.intento.valor.fueraDeRando");
+				errors.rejectValue("valorElegido", "error.intento.valor.fueraDeRango");
 			}
 		
 		}

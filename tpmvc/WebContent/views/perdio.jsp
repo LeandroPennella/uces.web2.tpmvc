@@ -8,6 +8,7 @@
 </head>
 <body>
 <h1>deci alpiste</h1>
+el numero era ${partida.numeroADescubrir}
 <a href="${pageContext.request.contextPath}/partida/iniciarPartida.do">Iniciar</a>
 </body>
 </html>

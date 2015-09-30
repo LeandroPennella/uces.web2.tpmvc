@@ -72,10 +72,12 @@ public class PartidaController {
 			return mv;
 		}
 		@RequestMapping(value = "/procesarIntento")	
-		public ModelAndView procesarIntento(@ModelAttribute("intento") Intento intento, @ModelAttribute("partida") Partida partida , BindingResult result, SessionStatus status) {
+		public ModelAndView procesarIntento(@ModelAttribute("intento") Intento intento, BindingResult result, @ModelAttribute("partida") Partida partida , SessionStatus status) {
 			//todo: validar que haya partida
 			this.intentoValidador.validate(intento, result);	
-			
+			if (result.hasErrors()) {
+				return new ModelAndView("/views/partida.jsp");
+			}
 			if (partida.addIntento(intento)==true)//devuelve true si el intento es correcto 
 			{
 				return new ModelAndView("/partida/persistirScore.do");

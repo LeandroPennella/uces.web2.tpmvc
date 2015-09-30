@@ -12,10 +12,10 @@
 </head>
 <body>
 
-	<fmt:setLocale value="es_AR" scope="session"/>
-	<fmt:setBundle basename="resources.mensajes" var="x"/>
-	<h1><fmt:message bundle="${x}" key="jugador.label.identifiquese" /></h1>
+
+	<h1><fmt:message  key="jugador.label.identifiquese" /></h1>
 	
+	<fmt:setBundle basename="resources.mensajes" var="x"/>
 	
 	<form:form method="POST" commandName="jugador" action="validarJugador.do">
 		<!-- nombre -->
