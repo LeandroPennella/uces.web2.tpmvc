@@ -20,6 +20,13 @@
 	<!-- donde va a buscar los componentes -->
 	<context:component-scan base-package="ar.edu.uces.progweb2.tpmvc" />
 
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/partida/**"/>																	<!-- declaro las url que va a interceptar -->
+			<bean class="ar.edu.uces.progweb2.tpmvc.interceptores.InterceptorPartida"></bean>	<!-- la clase que implementa el interceptor -->
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
 	<mvc:annotation-driven />
 
 	<!-- message resources -->

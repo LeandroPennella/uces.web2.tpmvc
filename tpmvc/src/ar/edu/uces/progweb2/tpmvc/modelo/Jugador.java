@@ -5,6 +5,7 @@ import java.util.Locale;
 public class Jugador {
 private String nombre;
 private String idioma;
+private int mejorSocre;
 
 public String getNombre() {
 	return nombre;
@@ -18,8 +19,19 @@ public String getIdioma() {
 	return idioma;
 }
 
-public void String(String idioma) {
+public void setIdioma(String idioma) {
 	this.idioma = idioma;
 }
+
+public int getMejorSocre() {
+	return mejorSocre;
+}
+
+public void setMejorSocre(int mejorSocre) {
+	this.mejorSocre = mejorSocre;
+}
+
+
+
 
 }

@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"    pageEncoding="ISO-8859-1"%>
+<%@ page isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
@@ -11,15 +12,19 @@
 </head>
 <body>
 	<h1><fmt:message key="partida.titulo"></fmt:message></h1>
-	Jugador: ${partida.getJugador().getNombre()}
-	<c:if test="${partida.intentos} }">
-	<c:forEach var="intento" items="${partida.intentos} }">
-	${intento.getValorElegido} -> ${intento.getDiferencia} 
+	Jugador: ${partida.getJugador().getNombre()}<br/>
+
+	<a href="/partida/iniciarPartida.do">ReIniciar</a>
+
+	<h2>Intentos</h2>
+	<c:forEach var="intento" items="${partida.intentos}">
+	<c:if test="${intento!=''}">
+		${intento.getValorElegido()}>${intento.getDiferencia()}<br/>
+	</c:if> 
 	</c:forEach>
-	</c:if>
-	<form:form method="POST" commandName="intento" action="procesarIntento.do">
-		
-		
+	<jsp:include page="estadisticas.jsp"></jsp:include>
+	
+	<form:form method="POST" commandName="intento" action="${pageContext.request.contextPath}/partida/procesarIntento.do">
 		<form:label path="valorElegido">
 			<fmt:message key="partida.label.valorElegido" />
 		</form:label>

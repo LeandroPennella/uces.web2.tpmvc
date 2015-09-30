@@ -20,12 +20,24 @@ public class IntentoValidador implements Validator {
 	public void validate(Object object, Errors errors) {
 		Intento intento= (Intento) object;
 		//ValidationUtils.rejectIfEmptyOrWhitespace(errors, "valorElegido", "error.intento.valor.vacio");
-		if (errors.hasFieldErrors("valorElegido")) {
+		
+		
+		if (!errors.hasFieldErrors("valorElegido")) {
 			if ((intento.getValorElegido()<1)||(intento.getValorElegido()>100)) {
 				errors.rejectValue("name", "error.intento.valor.fueraDeRando");
 			}
 		
 		}
 		
+		
+		/*
+        cadena = cadena.trim();
+        try {
+            Integer.parseInt(cadena);
+            return true;
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        */
 	}
 }
