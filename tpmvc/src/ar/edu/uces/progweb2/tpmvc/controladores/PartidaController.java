@@ -93,18 +93,20 @@ public class PartidaController {
 		private ModelAndView persistirScore(@ModelAttribute("partida") Partida partida ,  HttpServletResponse response, HttpServletRequest request)
 		{
 			boolean encontrado=false;
-			//obtener cookies
+
 			Cookie[] cookies = ((HttpServletRequest) request).getCookies();
 			if (cookies != null) {
-				//recorrer cookies
 				for (Cookie cookie : cookies) {
-					//si existe el jugador
 	                if(cookie.getName().toString().equals(partida.getJugador().getNombre())){
 	                	encontrado=true;
-	                    //si el puntaje guardado es menor al actual
-	                	if (Integer.parseInt(cookie.getValue())<partida.getIntentos().size())
-	                		//cambiar puntaje
-	                		cookie.setValue(Integer.toString(partida.getIntentos().size()));
+	                	if (Integer.parseInt(cookie.getValue())>partida.getIntentos().size())
+	                		{
+	                			String nuevoValor=Integer.toString(partida.getIntentos().size());
+	                			cookie.setValue(nuevoValor);
+	                			cookie.setMaxAge(60*60*24*365);
+	                			cookie.setPath("/");
+	                			response.addCookie(cookie);
+	                		}
 	                } 
 				}
 			}
@@ -115,6 +117,7 @@ public class PartidaController {
 				c.setPath("/");
 				response.addCookie(c);
 			}
+			
 			return new ModelAndView("/views/gano.jsp");
 		}
 	}

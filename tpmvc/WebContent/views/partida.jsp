@@ -13,8 +13,8 @@
 <body>
 	<h1><fmt:message key="partida.titulo"></fmt:message></h1>
 	Jugador: ${partida.getJugador().getNombre()}<br/>
-	<c:url value="/partida/iniciarPartida.do">Reiniciar</c:url>
-	<a href="${pageContext.request.contextPath}/partida/iniciarPartida.do">ReIniciar</a>
+	
+	<a href="<c:url value="/partida/iniciarPartida.do" ></c:url>">ReIniciar</a>
 
 	<h2>Intentos</h2>
 	<c:forEach var="intento" items="${partida.intentos}">

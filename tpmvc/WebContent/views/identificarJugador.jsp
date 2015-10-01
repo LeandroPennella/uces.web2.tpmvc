@@ -15,12 +15,11 @@
 
 	<h1><fmt:message  key="jugador.label.identifiquese" /></h1>
 	
-	<fmt:setBundle basename="resources.mensajes" var="x"/>
-	
-	<form:form method="POST" commandName="jugador" action="validarJugador.do">
+	<c:url value="/validarJugador.do" var="x"></c:url>
+	<form:form method="POST" commandName="jugador" action="${x}">
 		<!-- nombre -->
 		<form:label path="nombre">
-			<fmt:message bundle="${x}" key="jugador.label.identifiquese" />
+			<fmt:message  key="jugador.label.identifiquese" />
 		</form:label>
 		<form:input path="nombre" />
 		<form:errors path="nombre" cssStyle="color: red" />
