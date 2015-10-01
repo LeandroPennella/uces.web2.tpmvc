@@ -15,7 +15,7 @@
 	Jugador: ${partida.getJugador().getNombre()}<br/>
 	
 	<a href="<c:url value="/partida/iniciarPartida.do" ></c:url>">ReIniciar</a>
-
+	<a href="<c:url value="/identificarJugador.do" ></c:url>">Salir</a>
 	<h2>Intentos</h2>
 	<c:forEach var="intento" items="${partida.intentos}">
 	<c:if test="${intento!=''}">

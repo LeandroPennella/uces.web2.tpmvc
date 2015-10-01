@@ -23,7 +23,7 @@ public class InterceptorPartida implements HandlerInterceptor {
 		*/
 		HttpSession session= request.getSession();
 		//if ((session.getAttribute("jugador")==null)&&(session.getAttribute("partida")==null))
-		if (session.getAttribute("jugador")==null)
+		if ((session.getAttribute("jugador")==null))
 		{
 			RequestDispatcher rd= request.getRequestDispatcher("/identificarJugador.do");
 			rd.forward(request, response);

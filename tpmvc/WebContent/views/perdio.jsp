@@ -8,7 +8,7 @@
 </head>
 <body>
 <h1>deci alpiste</h1>
-el numero era ${partida.numeroADescubrir}
+el numero era ${partida.getNumeroADescubrir()}
 <a href="${pageContext.request.contextPath}/partida/iniciarPartida.do">Iniciar</a>
 </body>
 </html>

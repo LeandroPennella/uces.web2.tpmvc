@@ -40,7 +40,7 @@ public class JugadorController {
 		return mv;
 	}
 
-	@RequestMapping(value = "/validarJugador")
+	@RequestMapping(value = "/jugador/validarJugador")
 
 	public ModelAndView validarJugador(@ModelAttribute("idioma") String idioma,  @ModelAttribute("jugador") Jugador jugador, BindingResult result, HttpServletRequest request, HttpServletResponse response) {
 	

@@ -34,9 +34,9 @@ public class Partida {
 		this.jugador = jugador;
 	}
 
-	/*
-	 * public int getNumeroADescubrir() { return numeroADescubrir; }
-	 */
+	
+	  public int getNumeroADescubrir() { return numeroADescubrir; }
+	
 	public List<Intento> getIntentos() {
 		return intentos;
 	}

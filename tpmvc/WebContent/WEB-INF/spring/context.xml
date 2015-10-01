@@ -25,6 +25,10 @@
 			<mvc:mapping path="/partida/**"/>																	<!-- declaro las url que va a interceptar -->
 			<bean class="ar.edu.uces.progweb2.tpmvc.interceptores.InterceptorPartida"></bean>	<!-- la clase que implementa el interceptor -->
 		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/jugador/**"/>																	<!-- declaro las url que va a interceptar -->
+			<bean class="ar.edu.uces.progweb2.tpmvc.interceptores.InterceptorJugador"></bean>	<!-- la clase que implementa el interceptor -->
+		</mvc:interceptor>
 	</mvc:interceptors>
 	
 	<mvc:annotation-driven />
