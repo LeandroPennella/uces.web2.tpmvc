@@ -8,11 +8,20 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h2>Estadisticas</h2>
+	<h2>Estadisticas e</h2>
 	<c:forEach var="cookies" items="${cookie}">
-		<c:if test="${cookies.value.name!='JSESSIONID'}">
+		
 			<li><c:out value="${cookies.value.name}" />-<c:out value="${cookies.value.value}" /></li>
-		</c:if>
+		
 	</c:forEach>
+	
+	<%
+		Cookie[] cookies = request.getCookies();
+		if (cookies!=null) {
+			for(int i=0; i<cookies.length;i++){
+				out.println("<br/> - "+cookies[i].getName()+ " - "+cookies[i].getValue());			
+			}
+		}
+	%>
 </body>
 </html>

@@ -30,7 +30,7 @@
 		<form:label path="valorElegido">
 			<fmt:message key="partida.label.valorElegido" />
 		</form:label>
-		<form:input path="valorElegido"></form:input>
+		<form:input path="valorElegido"  />
 		<form:errors path="valorElegido" cssStyle="color: red" />
 		<form:button>Intentar!</form:button>
 	</form:form>

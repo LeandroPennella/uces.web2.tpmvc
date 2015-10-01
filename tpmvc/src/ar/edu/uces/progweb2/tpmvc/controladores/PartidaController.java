@@ -102,7 +102,7 @@ public class PartidaController {
 	                if(cookie.getName().toString().equals(partida.getJugador().getNombre())){
 	                	encontrado=true;
 	                    //si el puntaje guardado es menor al actual
-	                	if (Integer.parseInt(cookie.getValue())>partida.getIntentos().size())
+	                	if (Integer.parseInt(cookie.getValue())<partida.getIntentos().size())
 	                		//cambiar puntaje
 	                		cookie.setValue(Integer.toString(partida.getIntentos().size()));
 	                } 
@@ -111,6 +111,8 @@ public class PartidaController {
 			if (!encontrado)
 			{
 				Cookie c=new Cookie(partida.getJugador().getNombre(),Integer.toString(partida.getIntentos().size()));
+				c.setMaxAge(60*60*24*365);
+				c.setPath("/");
 				response.addCookie(c);
 			}
 			return new ModelAndView("/views/gano.jsp");

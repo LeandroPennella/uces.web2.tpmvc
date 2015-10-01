@@ -22,6 +22,7 @@ public class Partida {
 		this.numeroADescubrir = random.nextInt(100);
 		this.intentos = new ArrayList<Intento>();
 		this.jugador = jugador;
+		System.out.println("El numero a adivinar es "+this.numeroADescubrir);
 	}
 
 	//Getters y Setters
@@ -32,28 +33,29 @@ public class Partida {
 	public void setJugador(Jugador jugador) {
 		this.jugador = jugador;
 	}
-/*
-	public int getNumeroADescubrir() {
-		return numeroADescubrir;
-	}
-*/
+
+	/*
+	 * public int getNumeroADescubrir() { return numeroADescubrir; }
+	 */
 	public List<Intento> getIntentos() {
 		return intentos;
 	}
 
 	public boolean addIntento(Intento intento) {
-		int nDiferencia=intento.getValorElegido()-this.numeroADescubrir;
-		String diferencia="";
-		if (nDiferencia>0){diferencia="Es mayor";}
-		if (nDiferencia<0){diferencia="Es menor";}
+		int nDiferencia = intento.getValorElegido() - this.numeroADescubrir;
+		String diferencia = "";
+		if (nDiferencia > 0) {
+			diferencia = "Es mayor";
+		}
+		if (nDiferencia < 0) {
+			diferencia = "Es menor";
+		}
 		intento.setDiferencia(diferencia);
-		//this.ultimoIntento = intento;
+		// this.ultimoIntento = intento;
 		this.intentos.add(intento);
-		return (nDiferencia==0);
+		return (nDiferencia == 0);
 	}
-/*
-	public Intento getUltimoIntento() {
-		return this.ultimoIntento;
-	}
-*/
+	/*
+	 * public Intento getUltimoIntento() { return this.ultimoIntento; }
+	 */
 }

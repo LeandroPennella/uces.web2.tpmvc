@@ -33,28 +33,33 @@ public class JugadorController {
 
 		//localeResolver.setLocale(request, response, new Locale("es", "AR", "corbobes") );
 		localeResolver.setLocale(request, response, new Locale("en") );
-		Map<String,String> idiomas= new LinkedHashMap<String,String>();
-		idiomas.put("es", "Castellano");
-		idiomas.put("en", "Ingles");
+
 		ModelAndView mv=new ModelAndView("/views/identificarJugador.jsp");
 		mv.addObject("jugador", new Jugador());
-		mv.addObject("idiomas", idiomas);
+		mv.addObject("idiomas", listarIdiomas());
 		return mv;
 	}
 
 	@RequestMapping(value = "/validarJugador")
-	//public ModelAndView validarJugador(@ModelAttribute("jugador") Jugador jugador, BindingResult result, HttpServletRequest request, HttpServletResponse response) {
-	public ModelAndView validarJugador(@ModelAttribute("idioma") String idioma, @ModelAttribute("jugador") Jugador jugador, BindingResult result, HttpServletRequest request, HttpServletResponse response) {
-	//public ModelAndView validarJugador(ModelMap model, BindingResult result, HttpServletRequest request, HttpServletResponse response) {
+
+	public ModelAndView validarJugador(@ModelAttribute("idioma") String idioma,  @ModelAttribute("jugador") Jugador jugador, BindingResult result, HttpServletRequest request, HttpServletResponse response) {
 	
 		//Jugador jugador=(Jugador)model.get("jugador");
 		//todo:no sabe si jugador viene de sesion o de get?
 		this.jugadorValidador.validate(jugador, result);	
 		if (result.hasErrors()) {
-			return new ModelAndView("/views/identificarJugador.jsp");
+			return new ModelAndView("/views/identificarJugador.jsp","idiomas", listarIdiomas());
 		}
 		//todo: separar lengua_pais
 		localeResolver.setLocale(request, response, new Locale(idioma) );
 		return new ModelAndView("/partida/iniciarPartida.do");
+	}
+	
+	private Map<String,String> listarIdiomas()
+	{
+		Map<String,String>idiomas= new LinkedHashMap<String,String>();
+		idiomas.put("es", "Castellano");
+		idiomas.put("en", "Ingles");
+		return idiomas;
 	}
 }

@@ -2,14 +2,14 @@ package ar.edu.uces.progweb2.tpmvc.modelo;
 
 public class Intento {
 
-	public int valorElegido;
+	public Integer valorElegido;
 	public String diferencia;
 	
-	public int getValorElegido() {
+	public Integer getValorElegido() {
 		return valorElegido;
 	}
 
-	public void setValorElegido(int valorElegido) {
+	public void setValorElegido(Integer valorElegido) {
 		this.valorElegido = valorElegido;
 	}
 
