@@ -30,16 +30,19 @@ import ar.edu.uces.progweb2.tpmvc.validadores.IntentoValidador;
 import ar.edu.uces.progweb2.tpmvc.validadores.JugadorValidador;
 
 
-@SessionAttributes({"partida","jugador"}) 
+@SessionAttributes({"partida","jugador", "mejorJugador"}) 
+//@SessionAttributes("partida")
 
 
 @Controller
-@RequestMapping(value = "/partida")
+//@RequestMapping(value = "/partida")
 public class PartidaController {
 	
 		@Autowired
 		private IntentoValidador intentoValidador;
 
+		@Autowired
+		private Jugador mejorJugador;
 		//@Autowired
 		//private SessionLocaleResolver localeResolver;
 		/*
@@ -49,17 +52,24 @@ public class PartidaController {
 		}
 	 	*/
 
-		@RequestMapping(value = "/iniciarPartida")
+		@RequestMapping(value = "/jugador/iniciarPartida")
 		public ModelAndView iniciarPartida(@ModelAttribute("jugador") Jugador jugador) {
 			
+			ModelAndView mv;
 			//todo:validar que haya jugador
-			Partida partida=new Partida(jugador);
-			ModelAndView mv=new ModelAndView("/views/partida.jsp");
-			mv.addObject("intento", new Intento());
-			mv.addObject("partida", partida);
+			
+			if (jugador==null) {
+				mv=new ModelAndView("/identificarJugador.jsp");
+			} else {
+//				Partida partida=new Partida(jugador);
+				Partida partida=new Partida(jugador);
+				mv=new ModelAndView("/views/partida.jsp");
+				mv.addObject("intento", new Intento());
+				mv.addObject("partida", partida);
+			}
 			return mv;
 		}
-		
+		/*
 		@RequestMapping(value = "/reIniciarPartida")
 		public ModelAndView reIniciarPartida(@ModelAttribute("partida") Partida partida) {
 			
@@ -71,7 +81,8 @@ public class PartidaController {
 			mv.addObject("partida", partida);
 			return mv;
 		}
-		@RequestMapping(value = "/procesarIntento")	
+		*/
+		@RequestMapping(value = "/partida/procesarIntento")	
 		public ModelAndView procesarIntento(@ModelAttribute("intento") Intento intento, BindingResult result, @ModelAttribute("partida") Partida partida , SessionStatus status) {
 			//todo: validar que haya partida
 			this.intentoValidador.validate(intento, result);	
@@ -89,19 +100,65 @@ public class PartidaController {
 					return new ModelAndView("/views/perdio.jsp","jugador",partida.getJugador());
 		}
 		
-		@RequestMapping(value = "/persistirScore")	
-		private ModelAndView persistirScore(@ModelAttribute("partida") Partida partida ,  HttpServletResponse response, HttpServletRequest request)
+		@RequestMapping(value = "/partida/persistirScore")	
+		private ModelAndView persistirScore(@ModelAttribute("partida") Partida partida , @ModelAttribute("jugador") Jugador jugador ,  HttpServletResponse response, HttpServletRequest request)
 		{
 			boolean encontrado=false;
 
+			Cookie cookie ;
+			int scoreActual=partida.getIntentos().size();
+
+			//actualiza mejor score en session
+			if (jugador.getMejorScore()>scoreActual)
+			{
+				jugador.setMejorScore(scoreActual);
+			}
+			
+			//actualiza mejor jugador en cookies
+			cookie = obtenerCookie(request, "mejorJugadorNumero");
+			if (cookie==null)
+			{
+				cookie=new Cookie("mejorJugadorNumero","10");
+			}
+			
+			if (Integer.parseInt(cookie.getValue())>scoreActual)		
+			{
+    			cookie.setValue(Integer.toString(scoreActual));
+    			cookie.setMaxAge(60*60*24*365);
+    			cookie.setPath("/");
+    			response.addCookie(cookie);
+    			cookie = new Cookie ("mejorJugadorNombre",mejorJugador.getNombre());
+    			cookie.setValue(jugador.getNombre());
+    			cookie.setMaxAge(60*60*24*365);
+    			cookie.setPath("/");
+    			response.addCookie(cookie);
+			}
+			
+			//actualiza mejor score del jugador en cookies
+					
+			cookie = obtenerCookie(request, jugador.getNombre());
+			if (cookie!=null)
+			{
+				encontrado=true;
+            	if (Integer.parseInt(cookie.getValue())>scoreActual)
+            		{
+            			cookie.setValue(Integer.toString(scoreActual));
+            			cookie.setMaxAge(60*60*24*365);
+            			cookie.setPath("/");
+            			response.addCookie(cookie);
+            		}
+            } 
+			
+			
+			/*
 			Cookie[] cookies = ((HttpServletRequest) request).getCookies();
 			if (cookies != null) {
 				for (Cookie cookie : cookies) {
 	                if(cookie.getName().toString().equals(partida.getJugador().getNombre())){
 	                	encontrado=true;
-	                	if (Integer.parseInt(cookie.getValue())>partida.getIntentos().size())
+	                	if (Integer.parseInt(cookie.getValue())>scoreActual)
 	                		{
-	                			String nuevoValor=Integer.toString(partida.getIntentos().size());
+	                			String nuevoValor=Integer.toString(scoreActual);
 	                			cookie.setValue(nuevoValor);
 	                			cookie.setMaxAge(60*60*24*365);
 	                			cookie.setPath("/");
@@ -110,14 +167,31 @@ public class PartidaController {
 	                } 
 				}
 			}
+			*/
 			if (!encontrado)
 			{
-				Cookie c=new Cookie(partida.getJugador().getNombre(),Integer.toString(partida.getIntentos().size()));
-				c.setMaxAge(60*60*24*365);
-				c.setPath("/");
-				response.addCookie(c);
+				cookie=new Cookie(partida.getJugador().getNombre(),Integer.toString(partida.getIntentos().size()));
+				cookie.setMaxAge(60*60*24*365);
+				cookie.setPath("/");
+				response.addCookie(cookie);
 			}
+			
+			//actualiza mejor jugador del mundo mundial (sistema)
+			if (scoreActual<mejorJugador.getMejorScore())
+				mejorJugador=jugador;
+			
 			
 			return new ModelAndView("/views/gano.jsp");
 		}
+		
+	    public static Cookie obtenerCookie(HttpServletRequest request, String name) {
+	        if (request.getCookies() != null) {
+	            for (Cookie cookie : request.getCookies()) {
+	                if (cookie.getName().equals(name)) {
+	                    return cookie;
+	                }
+	            }
+	        }
+	        return null;
+	    }
 	}

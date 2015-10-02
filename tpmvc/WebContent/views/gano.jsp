@@ -11,6 +11,6 @@
 </head>
 <body>
 Ganaste en ${partida.getIntentos().size()} intentos! 
-<a href="${pageContext.request.contextPath}/partida/iniciarPartida.do">Iniciar</a>
+<a href="<c:url value="/jugador/iniciarPartida.do" ></c:url>">Iniciar</a>
 </body>
 </html>

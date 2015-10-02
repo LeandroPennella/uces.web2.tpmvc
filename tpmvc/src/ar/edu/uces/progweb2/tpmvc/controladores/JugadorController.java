@@ -41,7 +41,6 @@ public class JugadorController {
 	}
 
 	@RequestMapping(value = "/jugador/validarJugador")
-
 	public ModelAndView validarJugador(@ModelAttribute("idioma") String idioma,  @ModelAttribute("jugador") Jugador jugador, BindingResult result, HttpServletRequest request, HttpServletResponse response) {
 	
 		//Jugador jugador=(Jugador)model.get("jugador");
@@ -52,7 +51,7 @@ public class JugadorController {
 		}
 		//todo: separar lengua_pais
 		localeResolver.setLocale(request, response, new Locale(idioma) );
-		return new ModelAndView("/partida/iniciarPartida.do");
+		return new ModelAndView("/jugador/iniciarPartida.do","jugador",jugador);
 	}
 	
 	private Map<String,String> listarIdiomas()

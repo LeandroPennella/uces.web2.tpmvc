@@ -8,14 +8,20 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Identificar Usuario</title>
-
+<script type="text/javascript" src='<c:url value="/script/jquery-1.11.3.min.js" />'></script> 
+<script type="text/javascript">
+  
+$(document).ready(function() {
+  $("#nombre").focus();
+});
+</script>
 </head>
 <body>
 
 
 	<h1><fmt:message  key="jugador.label.identifiquese" /></h1>
 	
-	<c:url value="/validarJugador.do" var="x"></c:url>
+	<c:url value="/jugador/validarJugador.do" var="x"></c:url>
 	<form:form method="POST" commandName="jugador" action="${x}">
 		<!-- nombre -->
 		<form:label path="nombre">

@@ -9,12 +9,19 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<script type="text/javascript" src='<c:url value="/script/jquery-1.11.3.min.js" />'></script> 
+<script type="text/javascript">
+  
+$(document).ready(function() {
+  $("#valorElegido").focus();
+});
+</script>
 </head>
 <body>
 	<h1><fmt:message key="partida.titulo"></fmt:message></h1>
 	Jugador: ${partida.getJugador().getNombre()}<br/>
 	
-	<a href="<c:url value="/partida/iniciarPartida.do" ></c:url>">ReIniciar</a>
+	<a href="<c:url value="/jugador/iniciarPartida.do" ></c:url>">ReIniciar</a>
 	<a href="<c:url value="/identificarJugador.do" ></c:url>">Salir</a>
 	<h2>Intentos</h2>
 	<c:forEach var="intento" items="${partida.intentos}">

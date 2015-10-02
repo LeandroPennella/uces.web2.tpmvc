@@ -29,6 +29,12 @@ public class InterceptorPartida implements HandlerInterceptor {
 			rd.forward(request, response);
 			return false;		//no pasa por postHandle ni afterCompletion
 		}
+		if ((session.getAttribute("partida")==null))
+		{
+			RequestDispatcher rd= request.getRequestDispatcher("/jugador/iniciarPartida.do");
+			rd.forward(request, response);
+			return false;		//no pasa por postHandle ni afterCompletion
+		}
 			
 		return true; //sigue o no sigue // al controlador o al siguiente interceptor
 		
@@ -62,8 +68,6 @@ public class InterceptorPartida implements HandlerInterceptor {
 		long tiempoParcial=tiempoActual -tiempoInicial;
 		System.out.println("to: "+tiempoParcial);
 		System.out.println("to final : "+tiempoFinal);*/
-		
-
 	}
 
 }
