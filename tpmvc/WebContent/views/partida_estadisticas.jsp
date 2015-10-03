@@ -46,7 +46,7 @@
 	
 		<h4>Mejor jugador del sistema</h4>
 		</td></tr><tr><td>
-		${mejorJugador.getNombre() - mejorJugador.getMejorScore()}
+		${mejorJugador.getNombre()} - ${mejorJugador.getMejorScore()}
 		
 	</td></tr>
 	</table>

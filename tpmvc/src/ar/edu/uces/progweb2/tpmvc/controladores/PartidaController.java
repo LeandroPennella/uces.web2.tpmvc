@@ -30,7 +30,7 @@ import ar.edu.uces.progweb2.tpmvc.validadores.IntentoValidador;
 import ar.edu.uces.progweb2.tpmvc.validadores.JugadorValidador;
 
 
-@SessionAttributes({"partida","jugador", "mejorJugador"}) 
+@SessionAttributes({"partida","jugador"}) 
 //@SessionAttributes("partida")
 
 
@@ -41,8 +41,7 @@ public class PartidaController {
 		@Autowired
 		private IntentoValidador intentoValidador;
 
-		@Autowired
-		private Jugador mejorJugador;
+
 		//@Autowired
 		//private SessionLocaleResolver localeResolver;
 		/*
@@ -99,99 +98,5 @@ public class PartidaController {
 				else	
 					return new ModelAndView("/views/perdio.jsp","jugador",partida.getJugador());
 		}
-		
-		@RequestMapping(value = "/partida/persistirScore")	
-		private ModelAndView persistirScore(@ModelAttribute("partida") Partida partida , @ModelAttribute("jugador") Jugador jugador ,  HttpServletResponse response, HttpServletRequest request)
-		{
-			boolean encontrado=false;
 
-			Cookie cookie ;
-			int scoreActual=partida.getIntentos().size();
-
-			//actualiza mejor score en session
-			if (jugador.getMejorScore()>scoreActual)
-			{
-				jugador.setMejorScore(scoreActual);
-			}
-			
-			//actualiza mejor jugador en cookies
-			cookie = obtenerCookie(request, "mejorJugadorNumero");
-			if (cookie==null)
-			{
-				cookie=new Cookie("mejorJugadorNumero","10");
-			}
-			
-			if (Integer.parseInt(cookie.getValue())>scoreActual)		
-			{
-    			cookie.setValue(Integer.toString(scoreActual));
-    			cookie.setMaxAge(60*60*24*365);
-    			cookie.setPath("/");
-    			response.addCookie(cookie);
-    			cookie = new Cookie ("mejorJugadorNombre",mejorJugador.getNombre());
-    			cookie.setValue(jugador.getNombre());
-    			cookie.setMaxAge(60*60*24*365);
-    			cookie.setPath("/");
-    			response.addCookie(cookie);
-			}
-			
-			//actualiza mejor score del jugador en cookies
-					
-			cookie = obtenerCookie(request, jugador.getNombre());
-			if (cookie!=null)
-			{
-				encontrado=true;
-            	if (Integer.parseInt(cookie.getValue())>scoreActual)
-            		{
-            			cookie.setValue(Integer.toString(scoreActual));
-            			cookie.setMaxAge(60*60*24*365);
-            			cookie.setPath("/");
-            			response.addCookie(cookie);
-            		}
-            } 
-			
-			
-			/*
-			Cookie[] cookies = ((HttpServletRequest) request).getCookies();
-			if (cookies != null) {
-				for (Cookie cookie : cookies) {
-	                if(cookie.getName().toString().equals(partida.getJugador().getNombre())){
-	                	encontrado=true;
-	                	if (Integer.parseInt(cookie.getValue())>scoreActual)
-	                		{
-	                			String nuevoValor=Integer.toString(scoreActual);
-	                			cookie.setValue(nuevoValor);
-	                			cookie.setMaxAge(60*60*24*365);
-	                			cookie.setPath("/");
-	                			response.addCookie(cookie);
-	                		}
-	                } 
-				}
-			}
-			*/
-			if (!encontrado)
-			{
-				cookie=new Cookie(partida.getJugador().getNombre(),Integer.toString(partida.getIntentos().size()));
-				cookie.setMaxAge(60*60*24*365);
-				cookie.setPath("/");
-				response.addCookie(cookie);
-			}
-			
-			//actualiza mejor jugador del mundo mundial (sistema)
-			if (scoreActual<mejorJugador.getMejorScore())
-				mejorJugador=jugador;
-			
-			
-			return new ModelAndView("/views/gano.jsp");
-		}
-		
-	    public static Cookie obtenerCookie(HttpServletRequest request, String name) {
-	        if (request.getCookies() != null) {
-	            for (Cookie cookie : request.getCookies()) {
-	                if (cookie.getName().equals(name)) {
-	                    return cookie;
-	                }
-	            }
-	        }
-	        return null;
-	    }
 	}
