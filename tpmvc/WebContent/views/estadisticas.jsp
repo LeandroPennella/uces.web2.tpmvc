@@ -8,41 +8,48 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h2>Estadisticas e</h2>
-	
-	<h4>La mejor marca del jugador en esta sesión.</h4>
-	<c:out value="${jugador.getMejorScore()<10?jugador.getMejorScore():'N/A'}"></c:out>
-	
+<div class="bs-example">
+	<h2>Estadisticas</h2>
+	<table class="table table-striped">
+	<tr><td>
+		<h4>Mejor marca en esta sesión.</h4>
+		</td></tr><tr><td>
+		<c:out value="${jugador.getMejorScore()<10?jugador.getMejorScore():'N/A'}"></c:out>
+	</td></tr><tr><td>
 	 
-	<h4>La mejor marca del jugador en esta máquina (o navegador)..</h4>
-	<c:forEach var="cookies" items="${cookie}">
-		<c:if test="${cookies.value.name==jugador.getNombre()}">
-			<li><c:out value="${cookies.value.name}" />-<c:out value="${cookies.value.value}" /></li>
-		</c:if>
-	</c:forEach>
-	
-	<h4>El jugador con mejor marca en esta máquina (o navegador).</h4>
-
-	
-	<c:set var="mejorJugadorNumero" scope="session" value="${10}"></c:set>
-	<c:set var="mejorJugadorNombre" scope="session" value="${''}"></c:set>
-	
-	<c:forEach var="cookies" items="${cookie}">
-		<c:if test="${cookies.value.name=='mejorJugadorNombre'}">
-			<c:out value="${cookies.value.value}"></c:out>-
-		</c:if>
+		<h4>Mejor marca en esta máquina</h4>
+		</td></tr><tr><td>
+		<c:forEach var="cookies" items="${cookie}">
+			<c:if test="${cookies.value.name==jugador.getNombre()}">
+				<li><c:out value="${cookies.value.name}" />-<c:out value="${cookies.value.value}" /></li>
+			</c:if>
+		</c:forEach>
 		
-		<c:if test="${cookies.value.name=='mejorScoreValor'}">
-			<c:out value="${cookies.value.value}"></c:out>
-		</c:if>
-	</c:forEach>
+	</td></tr><tr><td>
 	
-	
-	<c:out value="${mejorJugadorNumero<10?mejorJugadorNombre - mejorJugadorNumero:'N/A'}"></c:out>
+		<h4>Mejor jugador en esta máquina </h4>
+		</td></tr><tr><td>
+		<c:set var="mejorJugadorNumero" scope="session" value="${10}"></c:set>
+		<c:set var="mejorJugadorNombre" scope="session" value="${''}"></c:set>
+		<c:forEach var="cookies" items="${cookie}">
+			<c:if test="${cookies.value.name=='mejorJugadorNombre'}">
+				<c:out value="${cookies.value.value}"></c:out>-
+			</c:if>
 			
+			<c:if test="${cookies.value.name=='mejorScoreValor'}">
+				<c:out value="${cookies.value.value}"></c:out>
+			</c:if>
+		</c:forEach>
+		<c:out value="${mejorJugadorNumero<10?mejorJugadorNombre - mejorJugadorNumero:'N/A'}"></c:out>
+		
+	</td></tr><tr><td>
 	
-	
-	<h4>La jugador con mejor marca en todo el sistema</h4>
-	${mejorJugador.getNombre() - mejorJugador.getMejorScore()} 
+		<h4>Mejor jugador del sistema</h4>
+		</td></tr><tr><td>
+		${mejorJugador.getNombre() - mejorJugador.getMejorScore()}
+		
+	</td></tr>
+	</table>
+</div> 
 </body>
 </html>

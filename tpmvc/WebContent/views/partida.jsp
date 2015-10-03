@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Adivine el numero</title>
 <link href='<c:url value="/css/bootstrap.min.css"/>' rel="stylesheet">
 <script type="text/javascript"
 	src='<c:url value="/js/jquery-1.11.3.min.js" />'></script>
@@ -20,19 +20,10 @@
 </script>
 </head>
 <body>
-	<div class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container">
-			<div id="navbar" class="navbar-collapse collapse">
-			<h1><fmt:message key="partida.titulo"></fmt:message></h1>
-			<div class="navbar-form navbar-right">
-			Jugador: ${partida.getJugador().getNombre()} <br />
-			<a href="<c:url value="/jugador/iniciarPartida.do" ></c:url>">ReIniciar</a>
-			<a href="<c:url value="/identificarJugador.do" ></c:url>">Salir</a>
-			</div>
-			</div>
-	 	</div>
-	</div>
 
+
+	<jsp:include page="partida_header2.jsp"></jsp:include>
+	
 	<div class="col-md-3">
 		<h2>Intentos</h2>
 		<c:forEach var="intento" items="${partida.intentos}">
@@ -48,14 +39,15 @@
 		<form:form method="POST" commandName="intento" action="${x}">
 			<form:label path="valorElegido">
 				<fmt:message key="partida.label.valorElegido" />
-			</form:label>
+			</form:label><br/>
 			<form:input path="valorElegido" />
-			<form:errors path="valorElegido" cssStyle="color: red" />
+			<form:errors path="valorElegido" cssStyle="color: red" /><br>
 			<form:button>Intentar!</form:button>
 		</form:form>
 	</div>
 	<div class="col-md-3">
 		<jsp:include page="estadisticas.jsp"></jsp:include>
 	</div>
+	
 </body>
 </html>
