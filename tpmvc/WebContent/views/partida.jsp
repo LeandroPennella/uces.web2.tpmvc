@@ -8,8 +8,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
-<script type="text/javascript" src='<c:url value="/script/jquery-1.11.3.min.js" />'></script> 
+<title>Insert title here</title>"
+<link href='<c:url value="/css/bootstrap.min.css"/>' rel="stylesheet">
+<script type="text/javascript" src='<c:url value="/js/jquery-1.11.3.min.js" />'></script> 
 <script type="text/javascript">
   
 $(document).ready(function() {
