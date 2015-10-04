@@ -85,22 +85,33 @@ public class PartidaController {
 		public ModelAndView procesarIntento(@ModelAttribute("intento") Intento intento, BindingResult result, @ModelAttribute("partida") Partida partida , SessionStatus status) {
 			//todo: validar que haya partida
 
-	
+			
 			if(partida.getIntentos().size()<10)
 			{
 				if(partida.getNumeroADescubrir()!=0)//la partida esta en curse
 				{
 					this.intentoValidador.validate(intento, result);	
 					if (result.hasErrors()) {
+						
+						
 						return new ModelAndView("/views/partida.jsp");
 					}
 					if (partida.addIntento(intento)==true) {//devuelve true si el intento es correcto (gano)					
 						return new ModelAndView("/partida/persistirScore.do");
 					} else {
-						return new ModelAndView("/views/partida.jsp", "intento", new Intento());
+						//
+						ModelAndView mv;
+						mv=new ModelAndView("/views/partida.jsp");
+						//mv.addObject("partida", partida);
+						mv.addObject("intento", new Intento());
+						return mv;
 					}
 				} else {
-					return new ModelAndView("/views/partida.jsp", "intento", new Intento());
+					ModelAndView mv;
+					mv=new ModelAndView("/views/partida.jsp");
+					//mv.addObject("partida", partida);
+					//mv.addObject("intento", new Intento());
+					return mv;
 				}	
 			} else	{
 				//return new ModelAndView("/views/perdio.jsp","jugador",partida.getJugador());

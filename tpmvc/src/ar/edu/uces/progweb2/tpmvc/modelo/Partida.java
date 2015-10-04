@@ -19,7 +19,7 @@ public class Partida {
 */
 	public Partida(Jugador jugador) {
 		Random random = new Random();
-		this.numeroADescubrir = random.nextInt(100);
+		this.numeroADescubrir = random.nextInt(99)+1;
 		this.intentos = new ArrayList<Intento>();
 		this.jugador = jugador;
 		System.out.println("El numero a adivinar es "+this.numeroADescubrir);
@@ -43,6 +43,7 @@ public class Partida {
 
 	public boolean addIntento(Intento intento) {
 		int nDiferencia = intento.getValorElegido() - this.numeroADescubrir;
+		boolean gano=false;
 		String diferencia = "";
 		if (nDiferencia > 0) {
 			diferencia = "Es mayor";
@@ -50,10 +51,12 @@ public class Partida {
 		if (nDiferencia < 0) {
 			diferencia = "Es menor";
 		}
+		if (nDiferencia==0) {
+			this.numeroADescubrir=0;
+		} else {
 		intento.setDiferencia(diferencia);
 		// this.ultimoIntento = intento;
-		this.intentos.add(intento);
-		this.numeroADescubrir=0;
+		this.intentos.add(intento);}
 		return (nDiferencia == 0);
 	}
 	/*
