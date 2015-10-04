@@ -36,25 +36,29 @@ public class PartidaScoreController {
 		}
 		
 		//actualiza mejor jugador en cookies
+		/*
 		cookie = obtenerCookie(request, "mejorJugadorNumero");
-		if (cookie==null)
-		{
-			cookie=new Cookie("mejorJugadorNumero","10");
-		}
 		
-		if (Integer.parseInt(cookie.getValue())>scoreActual)		
+		if ((cookie==null)||(Integer.parseInt(cookie.getValue())>scoreActual))		
 		{
-			cookie.setValue(Integer.toString(scoreActual));
+			if (cookie==null)
+			{
+				cookie=new Cookie("mejorJugadorNumero","10");
+			}
+			else
+			{
+				cookie.setValue(Integer.toString(scoreActual));
+			}
 			cookie.setMaxAge(60*60*24*365);
 			cookie.setPath("/");
 			response.addCookie(cookie);
-			cookie = new Cookie ("mejorJugadorNombre",mejorJugador.getNombre());
-			cookie.setValue(jugador.getNombre());
+			cookie = new Cookie ("mejorJugadorNombre",jugador.getNombre());
+			//cookie.setValue(jugador.getNombre());
 			cookie.setMaxAge(60*60*24*365);
 			cookie.setPath("/");
 			response.addCookie(cookie);
 		}
-		
+		*/
 		//actualiza mejor score del jugador en cookies	
 		cookie = obtenerCookie(request, jugador.getNombre());
 		if (cookie!=null)

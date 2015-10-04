@@ -19,11 +19,15 @@
 	 
 		<h4>Mejor marca en esta máquina</h4>
 		</td></tr><tr><td>
+		<c:set var="mejorMarcaEnMaquina" scope="session" value="${10}"></c:set>
 		<c:forEach var="cookies" items="${cookie}">
-			<c:if test="${cookies.value.name==jugador.getNombre()}">
-				<li><c:out value="${cookies.value.name}" />-<c:out value="${cookies.value.value}" /></li>
+			<c:if test="${cookies.value.name!='JSESSIONID'}">
+				<c:if test="${cookies.value.value<mejorMarcaEnMaquina}">
+					<c:set var="mejorMarcaEnMaquina" scope="session" value="${cookies.value.value}"></c:set>		
+				</c:if>
 			</c:if>
 		</c:forEach>
+		<c:out value="${mejorMarcaEnMaquina<10?mejorMarcaEnMaquina :'N/A'}"></c:out>
 		
 	</td></tr><tr><td>
 	
@@ -31,23 +35,30 @@
 		</td></tr><tr><td>
 		<c:set var="mejorJugadorNumero" scope="session" value="${10}"></c:set>
 		<c:set var="mejorJugadorNombre" scope="session" value="${''}"></c:set>
+
 		<c:forEach var="cookies" items="${cookie}">
-			<c:if test="${cookies.value.name=='mejorJugadorNombre'}">
-				<c:out value="${cookies.value.value}"></c:out>-
-			</c:if>
-			
-			<c:if test="${cookies.value.name=='mejorScoreValor'}">
-				<c:out value="${cookies.value.value}"></c:out>
+			<c:if test="${cookies.value.name!='JSESSIONID'}">
+				<c:if test="${cookies.value.value<mejorJugadorNumero}">
+					<c:set var="mejorJugadorNumero" scope="session" value="${cookies.value.value}"></c:set>
+					<c:set var="mejorJugadorNombre" scope="session" value="${cookies.value.name}"></c:set>
+				</c:if>
 			</c:if>
 		</c:forEach>
-		<c:out value="${mejorJugadorNumero<10?mejorJugadorNombre - mejorJugadorNumero:'N/A'}"></c:out>
+		
+		<c:out value="${mejorJugadorNumero<10?(mejorJugadorNombre.concat('-').concat(mejorJugadorNumero)):'N/A'}"></c:out>
 		
 	</td></tr><tr><td>
 	
 		<h4>Mejor jugador del sistema</h4>
 		</td></tr><tr><td>
-		${mejorJugador.getNombre()} - ${mejorJugador.getMejorScore()}
-		
+		<c:choose>
+		  <c:when test="${mejorJugador.getNombre()!=null}">
+			${mejorJugador.getNombre()} - ${mejorJugador.getMejorScore()}
+		  </c:when>
+		  <c:otherwise>
+			N/A
+		  </c:otherwise>
+		</c:choose>
 	</td></tr>
 	</table>
 </div> 
