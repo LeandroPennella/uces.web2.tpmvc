@@ -42,5 +42,11 @@
 		<jsp:include page="partida_estadisticas.jsp"></jsp:include>
 	</div>
 	
+	<c:if test="${partida.getNumeroADescubrir()==0}">
+	Gano
+	</c:if>
+		<c:if test="${partida.getIntentos().size()>9}">
+	Perdio
+	</c:if>
 </body>
 </html>

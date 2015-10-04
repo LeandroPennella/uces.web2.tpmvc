@@ -53,9 +53,12 @@ public class Partida {
 		intento.setDiferencia(diferencia);
 		// this.ultimoIntento = intento;
 		this.intentos.add(intento);
+		this.numeroADescubrir=0;
 		return (nDiferencia == 0);
 	}
 	/*
 	 * public Intento getUltimoIntento() { return this.ultimoIntento; }
 	 */
+	
+	
 }

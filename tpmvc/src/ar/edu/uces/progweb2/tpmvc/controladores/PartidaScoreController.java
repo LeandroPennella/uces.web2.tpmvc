@@ -89,7 +89,8 @@ public class PartidaScoreController {
 			request.getServletContext().setAttribute("mejorJugador", jugador); 
 		
 		
-		return new ModelAndView("/views/gano.jsp");
+		//return new ModelAndView("/views/gano.jsp");
+		return new ModelAndView("/views/partida.jsp");//todo: devolver del forward;
 	}
 	
     public static Cookie obtenerCookie(HttpServletRequest request, String name) {

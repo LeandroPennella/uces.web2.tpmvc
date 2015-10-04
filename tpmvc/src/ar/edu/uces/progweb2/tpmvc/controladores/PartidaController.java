@@ -84,19 +84,28 @@ public class PartidaController {
 		@RequestMapping(value = "/partida/procesarIntento")	
 		public ModelAndView procesarIntento(@ModelAttribute("intento") Intento intento, BindingResult result, @ModelAttribute("partida") Partida partida , SessionStatus status) {
 			//todo: validar que haya partida
-			this.intentoValidador.validate(intento, result);	
-			if (result.hasErrors()) {
+
+	
+			if(partida.getIntentos().size()<10)
+			{
+				if(partida.getNumeroADescubrir()!=0)//la partida esta en curse
+				{
+					this.intentoValidador.validate(intento, result);	
+					if (result.hasErrors()) {
+						return new ModelAndView("/views/partida.jsp");
+					}
+					if (partida.addIntento(intento)==true) {//devuelve true si el intento es correcto (gano)					
+						return new ModelAndView("/partida/persistirScore.do");
+					} else {
+						return new ModelAndView("/views/partida.jsp", "intento", new Intento());
+					}
+				} else {
+					return new ModelAndView("/views/partida.jsp", "intento", new Intento());
+				}	
+			} else	{
+				//return new ModelAndView("/views/perdio.jsp","jugador",partida.getJugador());
 				return new ModelAndView("/views/partida.jsp");
 			}
-			if (partida.addIntento(intento)==true)//devuelve true si el intento es correcto 
-			{
-				return new ModelAndView("/partida/persistirScore.do");
-			}
-			else
-				if(partida.getIntentos().size()<10)
-					return new ModelAndView("/views/partida.jsp", "intento", new Intento());
-				else	
-					return new ModelAndView("/views/perdio.jsp","jugador",partida.getJugador());
 		}
 
 	}
