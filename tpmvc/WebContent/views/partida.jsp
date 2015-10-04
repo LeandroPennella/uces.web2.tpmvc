@@ -55,7 +55,9 @@
 			      text: "en ${partida.getIntentos().size()} intentos! ",
 			      type: "success",
 			      confirmButtonText: "Ok"
-			    });
+			    }, function(){
+				    window.location.href = '../jugador/iniciarPartida.do';
+				});
 			  }, 500);
 			});
 		</script>
@@ -69,7 +71,9 @@
 			      text: "el numero era ${partida.getNumeroADescubrir()} ",
 			      type: "error",
 			      confirmButtonText: "Ok"
-			    });
+			    }, function(){
+				    window.location.href = '../jugador/iniciarPartida.do';
+				});
 			 }, 500);
 			});
 		</script>
