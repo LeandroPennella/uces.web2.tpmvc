@@ -18,31 +18,33 @@
 	});
 </script>
 </head>
-<body>
+<body role="document"	>
+	
 	<div class="container theme-showcase" role="main">
-
-		<div class="jumbotron">
-			<h1>
-				<fmt:message key="jugador.label.identifiquese" />
-			</h1>
-
-			<c:url value="/jugador/validarJugador.do" var="x"></c:url>
-			<form:form method="POST" commandName="jugador" action="${x}">
-				<!-- nombre -->
-				<form:label path="nombre">
+		
+			<div class="jumbotron">
+				<h1>
 					<fmt:message key="jugador.label.identifiquese" />
-				</form:label>
-				<form:input path="nombre" />
-				<form:errors path="nombre" cssStyle="color: red" />
-
-				<!-- idiomas -->
-
-				<form:select id="idioma" path="idioma">
-					<form:options items="${idiomas}" />
-				</form:select>
-				<form:button>Comenzar!</form:button>
-			</form:form>
-		</div>
+				</h1>
+	
+				<c:url value="/jugador/validarJugador.do" var="x"></c:url>
+				<form:form method="POST" commandName="jugador" action="${x}" >
+					<!-- nombre -->
+					<form:label path="nombre">
+						<fmt:message key="jugador.label.identifiquese" />
+					</form:label>
+					<form:input path="nombre" />
+					<form:errors path="nombre" cssStyle="color: red" />
+	
+					<!-- idiomas -->
+	
+					<form:select id="idioma" path="idioma">
+						<form:options items="${idiomas}" />
+					</form:select>
+					<form:button>Comenzar!</form:button>
+				</form:form>
+			</div>
+		
 	</div>
 
 

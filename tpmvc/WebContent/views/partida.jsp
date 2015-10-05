@@ -20,6 +20,11 @@
 
 		});
 	</script>
+	<style>
+	.navbar-brand:first-of-type{
+	font-size: 50px;
+	}
+	</style>
 </head>
 <body>
 	
@@ -29,18 +34,22 @@
 		<jsp:include page="partida_intentos.jsp"></jsp:include>
 	</div>
 
-	<div class="col-md-6">
+	<div class="col-md-6" style="text-align: center;">
+	
+	
 		<c:url value="/partida/procesarIntento.do" var="x"></c:url>
 
 		<form:form method="POST" commandName="intento" action="${x}">
 			<form:label path="valorElegido">
-				<fmt:message key="partida.label.valorElegido" />
+				<h2><fmt:message key="partida.label.valorElegido" /></h2>
 			</form:label><br/>
-			<form:input path="valorElegido" />
+			<form:input path="valorElegido"/>
 			<form:errors path="valorElegido" cssStyle="color: red" /><br>
 			<form:button>Intentar!</form:button>
 		</form:form>
-	</div>
+	
+		</div>
+	
 	
 	<div class="col-md-3">
 		<jsp:include page="partida_estadisticas.jsp"></jsp:include>

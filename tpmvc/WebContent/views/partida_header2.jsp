@@ -5,16 +5,17 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
-	
+		
 		<div class="navbar-header">
-			<a class="navbar-brand" href="#"> <fmt:message key="partida.titulo"></fmt:message></a>
+			<a class="navbar-brand" href="#"><fmt:message key="partida.titulo"></fmt:message></a>
 		</div>
+		
 		<div id="navbar" class="navbar-collapse collapse">
 			<div class="navbar-form navbar-right">
-				<a class="navbar-brand" href="#">Jugador: ${partida.getJugador().getNombre()}</a> 
+				<a>Jugador: ${partida.getJugador().getNombre()}</a> 
 				<a href="<c:url value="/jugador/iniciarPartida.do" ></c:url>" class="btn btn-success">ReIniciar</a> 
 				<a href="<c:url value="/identificarJugador.do" ></c:url>" class="btn btn-success">Salir</a>
 			</div>
 		</div>
 </nav>
-<div class="jumbotron">-</div>
+<div class="jumbotron">-</div> 

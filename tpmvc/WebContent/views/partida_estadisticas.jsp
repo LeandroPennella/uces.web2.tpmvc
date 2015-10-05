@@ -12,12 +12,12 @@
 	<h2>Estadisticas</h2>
 	<table class="table table-striped">
 	<tr><td>
-		<h4>Mejor marca en esta sesión.</h4>
+		<b>Mejor marca en esta sesión.</b>
 		</td></tr><tr><td>
 		<c:out value="${jugador.getMejorScore()<10?jugador.getMejorScore():'N/A'}"></c:out>
 	</td></tr><tr><td>
 	 
-		<h4>Mejor marca en esta máquina</h4>
+		<b>Mejor marca en este navegador</b>
 		</td></tr><tr><td>
 		<c:set var="mejorMarcaEnMaquina" scope="session" value="${10}"></c:set>
 		<c:forEach var="cookies" items="${cookie}">
@@ -31,7 +31,7 @@
 		
 	</td></tr><tr><td>
 	
-		<h4>Mejor jugador en esta máquina </h4>
+		<b>Mejor jugador en este navegador</b>
 		</td></tr><tr><td>
 		<c:set var="mejorJugadorNumero" scope="session" value="${10}"></c:set>
 		<c:set var="mejorJugadorNombre" scope="session" value="${''}"></c:set>
@@ -49,7 +49,7 @@
 		
 	</td></tr><tr><td>
 	
-		<h4>Mejor jugador del sistema</h4>
+		<b>Mejor jugador del sistema</b>
 		</td></tr><tr><td>
 		<c:choose>
 		  <c:when test="${mejorJugador.getNombre()!=null}">
