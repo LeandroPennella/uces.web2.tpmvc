@@ -8,22 +8,16 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
+    <link rel="icon" href="/imagenes/Roulette.gif">
 
-    <title>Signin Template for Bootstrap</title>
+    <title><fmt:message key="titulo"/></title>
 
-    <!-- Bootstrap core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
     <link href="../css/signin.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="../js/ie-emulation-modes-warning.js"></script>
+    <!-- <script src="../js/ie-emulation-modes-warning.js"></script> -->
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -36,26 +30,26 @@
   <body>
 
     <div class="container">
-
-    
-
-<form class="form-signin">
-	<div class="panel panel-default">
-		<div class="panel-body">
-			<img alt="" src="<c:url value='/imagenes/Roulette.gif'/>"/>
-			<h2 class="form-signin-heading"><fmt:message key="jugador.label.identifiquese" /></h2>
-			<label for="inputEmail" class="sr-only"><fmt:message key="jugador.label.identifiquese" /></label>
-			<input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
-			<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-		</div>
-	</div>
-</form>
-  
+		<c:url value="/jugador/validarJugador.do" var="x"></c:url>
+		<form:form method="POST" commandName="jugador" action="${x}" cssClass="form-signin">	
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<img alt="" src="<c:url value='/imagenes/Roulette.gif'/>"/>
+					
+					<h2 class="form-signin-heading"><fmt:message key="jugador.label.identifiquese" /></h2>
+					
+					<label for="inputEmail" class="sr-only"><fmt:message key="jugador.label.identifiquese" /></label>
+					<input type="email" id="inputEmail" class="form-control" placeholder='<fmt:message key="jugador.label.identifiquese" />' required="" autofocus="">
+					
+					<button class="btn btn-lg btn-primary btn-block" type="submit"><fmt:message key="entrar" /></button>
+				</div>
+			</div>
+		</form:form>
     </div> <!-- /container -->
 
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+    <!-- <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script> -->
   
 
 </body></html>

@@ -9,8 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title><fmt:message key="titulo"/></title>
 <link href='<c:url value="/css/bootstrap.min.css"/>' rel="stylesheet">
-<script type="text/javascript"
-	src='<c:url value="/js/jquery-1.11.3.min.js" />'></script>
+<script type="text/javascript" src='<c:url value="/js/jquery-1.11.3.min.js" />'></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#nombre").focus();
@@ -29,6 +28,7 @@
 	
 				<c:url value="/jugador/validarJugador.do" var="x"></c:url>
 				<form:form method="POST" commandName="jugador" action="${x}" >
+				
 					<!-- nombre -->
 					<form:label path="nombre">
 						<fmt:message key="jugador.label.identifiquese" />
@@ -37,11 +37,13 @@
 					<form:errors path="nombre" cssStyle="color: red" />
 	
 					<!-- idiomas -->
-	
 					<form:select id="idioma" path="idioma">
 						<form:options items="${idiomas}" />
 					</form:select>
-					<form:button>Comenzar!</form:button>
+					
+					<!-- Submit -->
+					<form:button><fmt:message key="entrar" /></form:button>
+					
 				</form:form>
 			</div>
 		
