@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
@@ -8,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Identifiquese</title>
+<title><fmt:message key="titulo"/></title>
 <link href='<c:url value="/css/bootstrap.min.css"/>' rel="stylesheet">
 <script type="text/javascript"
 	src='<c:url value="/js/jquery-1.11.3.min.js" />'></script>
@@ -23,6 +22,7 @@
 	<div class="container theme-showcase" role="main">
 		
 			<div class="jumbotron">
+				<img alt="" src="<c:url value='/imagenes/Roulette.gif'/>">
 				<h1>
 					<fmt:message key="jugador.label.identifiquese" />
 				</h1>

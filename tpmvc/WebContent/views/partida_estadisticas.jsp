@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,15 +9,15 @@
 </head>
 <body>
 <div class="bs-example">
-	<h2>Estadisticas</h2>
+	<h2><fmt:message key="estadisticas"/></h2>
 	<table class="table table-striped">
 	<tr><td>
-		<b>Mejor marca en esta sesión.</b>
+		<b><fmt:message key="estadisticas.label.marcaSesion"/></b>
 		</td></tr><tr><td>
 		<c:out value="${jugador.getMejorScore()<10?jugador.getMejorScore():'N/A'}"></c:out>
 	</td></tr><tr><td>
 	 
-		<b>Mejor marca en este navegador</b>
+ 		<b><fmt:message key="estadisticas.label.marcaNavegador"/></b>
 		</td></tr><tr><td>
 		<c:set var="mejorMarcaEnMaquina" scope="session" value="${10}"></c:set>
 		<c:forEach var="cookies" items="${cookie}">
@@ -30,8 +30,8 @@
 		<c:out value="${mejorMarcaEnMaquina<10?mejorMarcaEnMaquina :'N/A'}"></c:out>
 		
 	</td></tr><tr><td>
-	
-		<b>Mejor jugador en este navegador</b>
+		<b><fmt:message key="estadisticas.label.jugadorNavegador"/></b>
+
 		</td></tr><tr><td>
 		<c:set var="mejorJugadorNumero" scope="session" value="${10}"></c:set>
 		<c:set var="mejorJugadorNombre" scope="session" value="${''}"></c:set>
@@ -48,8 +48,7 @@
 		<c:out value="${mejorJugadorNumero<10?(mejorJugadorNombre.concat('-').concat(mejorJugadorNumero)):'N/A'}"></c:out>
 		
 	</td></tr><tr><td>
-	
-		<b>Mejor jugador del sistema</b>
+		<b><fmt:message key="estadisticas.label.jugadorSistema"/></b>
 		</td></tr><tr><td>
 		<c:choose>
 		  <c:when test="${mejorJugador.getNombre()!=null}">

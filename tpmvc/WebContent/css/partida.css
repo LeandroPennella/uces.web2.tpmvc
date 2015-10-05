@@ -1,0 +1,19 @@
+body{
+	padding-top: 70px;
+}
+.navbar-collapse {
+	background-color: #236aa7;
+}
+
+.navbar-brand:first-of-type {
+	font-size: 30px;
+	color: white;
+}
+
+.jugador {
+	color: lightgray;
+	font-size: 20px;
+}
+
+.navbar-header>img
+{float: left; width: 40px; height: 40px; margin: 5px;}

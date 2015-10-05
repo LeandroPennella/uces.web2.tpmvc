@@ -32,7 +32,7 @@ public class JugadorController {
 	public ModelAndView identificarJugador(HttpServletRequest request, HttpServletResponse response) {
 
 		//localeResolver.setLocale(request, response, new Locale("es", "AR", "corbobes") );
-		localeResolver.setLocale(request, response, new Locale("en") );
+		//localeResolver.setLocale(request, response, new Locale("en") );
 
 		ModelAndView mv=new ModelAndView("/views/identificarJugador.jsp");
 		mv.addObject("jugador", new Jugador());

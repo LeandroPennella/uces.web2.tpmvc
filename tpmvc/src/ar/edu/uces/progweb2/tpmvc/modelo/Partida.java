@@ -46,10 +46,10 @@ public class Partida {
 		boolean gano=false;
 		String diferencia = "";
 		if (nDiferencia > 0) {
-			diferencia = "Es mayor";
+			diferencia = "intentos.EsMayor";
 		}
 		if (nDiferencia < 0) {
-			diferencia = "Es menor";
+			diferencia = "intentos.EsMenor";
 		}
 		if (nDiferencia==0) {
 			this.numeroADescubrir=0;

@@ -4,16 +4,19 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-<div class="header clearfix">
-	<nav>
-		<div id="navbar" class="navbar-collapse collapse">
-			<ul class="nav nav-pills pull-right">
-				<li role="presentation">Jugador: ${partida.getJugador().getNombre()}</li> 
-				<li role="presentation"><a href="<c:url value="/jugador/iniciarPartida.do" ></c:url>" class="btn btn-success">ReIniciar</a></li>
-				<li role="presentation"><a href="<c:url value="/identificarJugador.do" ></c:url>" class="btn btn-success">Salir</a></li>
-			</ul>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+		
+		<div class="navbar-header">
+ 			<img alt="" src="../imagenes/Roulette.gif">
+			<a class=" navbar-brand" href="#"><fmt:message key="titulo"></fmt:message></a>
 		</div>
-	</nav>
-	<h3 class="text-muted"> <fmt:message key="partida.titulo"></fmt:message></h3>
-</div>
-	
+		
+		<div id="navbar" class="navbar-collapse collapse">
+			<div class="navbar-form navbar-right">
+				<a class="jugador">${partida.getJugador().getNombre()}</a> 
+				<a href="<c:url value="/jugador/iniciarPartida.do" ></c:url>" class="btn btn-success"><fmt:message key="reiniciar"/></a> 
+				<a href="<c:url value="/identificarJugador.do" ></c:url>" class="btn btn-success"><fmt:message key="salir"/></a>
+			</div>
+		</div>
+</nav>
+ 
