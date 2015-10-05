@@ -35,6 +35,7 @@ public class JugadorController {
 		//localeResolver.setLocale(request, response, new Locale("en") );
 
 		ModelAndView mv=new ModelAndView("/views/identificarJugador.jsp");
+		
 		mv.addObject("jugador", new Jugador());
 		mv.addObject("idiomas", listarIdiomas());
 		return mv;
