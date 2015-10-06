@@ -1,5 +1,4 @@
 package ar.edu.uces.progweb2.tpmvc.validadores;
-
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
@@ -25,18 +24,6 @@ public class IntentoValidador implements Validator {
 			if ((intento.getValorElegido()<1)||(intento.getValorElegido()>100)) {
 				errors.rejectValue("valorElegido", "error.intento.valor.fueraDeRango");
 			}
-		
 		}
-		
-		
-		/*
-        cadena = cadena.trim();
-        try {
-            Integer.parseInt(cadena);
-            return true;
-        } catch (NumberFormatException nfe) {
-            return false;
-        }
-        */
 	}
 }

@@ -17,8 +17,9 @@
 
 	<script type="text/javascript">
 		$(document).ready(function() {
-			$("#valorElegido").focus();
-		});
+			$("#valorElegido").focus(),
+			$("#btnIngresar").addClass("btn btn-primary btn-lg");		
+			});
 	</script>
 <style type="text/css">
 
@@ -41,10 +42,10 @@
 						<h2><fmt:message key="partida.label.valorElegido" /></h2>
 					</form:label>
 					<br>
-					<form:input path="valorElegido" size="4" cssStyle=""/>
+					<form:input path="valorElegido" size="4"/><br>
 					<form:errors path="valorElegido" cssStyle="color: red" /><br/><br/>
 					
-					<form:button><fmt:message key="partida.botonIntentar" /></form:button>
+					<form:button id="btnIngresar"><fmt:message key="partida.botonIntentar" /></form:button>
 				</form:form>
 			</div>
 		</div>

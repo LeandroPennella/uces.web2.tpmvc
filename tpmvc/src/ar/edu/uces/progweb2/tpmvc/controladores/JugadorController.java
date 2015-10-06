@@ -30,12 +30,7 @@ public class JugadorController {
 	
 	@RequestMapping(value = "/identificarJugador")
 	public ModelAndView identificarJugador(HttpServletRequest request, HttpServletResponse response) {
-
-		//localeResolver.setLocale(request, response, new Locale("es", "AR", "corbobes") );
-		//localeResolver.setLocale(request, response, new Locale("en") );
-
 		ModelAndView mv=new ModelAndView("/views/identificarJugador.jsp");
-		
 		mv.addObject("jugador", new Jugador());
 		mv.addObject("idiomas", listarIdiomas());
 		return mv;
@@ -44,7 +39,6 @@ public class JugadorController {
 	@RequestMapping(value = "/jugador/validarJugador")
 	public ModelAndView validarJugador(@ModelAttribute("idioma") String idioma,  @ModelAttribute("jugador") Jugador jugador, BindingResult result, HttpServletRequest request, HttpServletResponse response) {
 	
-		//Jugador jugador=(Jugador)model.get("jugador");
 		//todo:no sabe si jugador viene de sesion o de get?
 		this.jugadorValidador.validate(jugador, result);	
 		if (result.hasErrors()) {
@@ -59,7 +53,7 @@ public class JugadorController {
 	{
 		Map<String,String>idiomas= new LinkedHashMap<String,String>();
 		idiomas.put("es", "Castellano");
-		idiomas.put("en", "Ingles");
+		idiomas.put("en", "English");
 		return idiomas;
 	}
 }

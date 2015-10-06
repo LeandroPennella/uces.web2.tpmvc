@@ -17,3 +17,15 @@ body{
 
 .navbar-header>img
 {float: left; width: 40px; height: 40px; margin: 5px;}
+
+.panel-body
+{
+	background-color: #FAFAFA;
+}
+
+#valorElegido
+{
+	font-size: 30px;
+	text-align: center;
+	
+}

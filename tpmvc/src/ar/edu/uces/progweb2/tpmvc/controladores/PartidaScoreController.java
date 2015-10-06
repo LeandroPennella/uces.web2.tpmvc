@@ -34,31 +34,7 @@ public class PartidaScoreController {
 		{
 			jugador.setMejorScore(scoreActual);
 		}
-		
-		//actualiza mejor jugador en cookies
-		/*
-		cookie = obtenerCookie(request, "mejorJugadorNumero");
-		
-		if ((cookie==null)||(Integer.parseInt(cookie.getValue())>scoreActual))		
-		{
-			if (cookie==null)
-			{
-				cookie=new Cookie("mejorJugadorNumero","10");
-			}
-			else
-			{
-				cookie.setValue(Integer.toString(scoreActual));
-			}
-			cookie.setMaxAge(60*60*24*365);
-			cookie.setPath("/");
-			response.addCookie(cookie);
-			cookie = new Cookie ("mejorJugadorNombre",jugador.getNombre());
-			//cookie.setValue(jugador.getNombre());
-			cookie.setMaxAge(60*60*24*365);
-			cookie.setPath("/");
-			response.addCookie(cookie);
-		}
-		*/
+
 		//actualiza mejor score del jugador en cookies	
 		cookie = obtenerCookie(request, jugador.getNombre());
 		if (cookie!=null)
@@ -72,8 +48,7 @@ public class PartidaScoreController {
         			response.addCookie(cookie);
         		}
         } 
-		
-	
+
 		if (!encontrado)
 		{
 			cookie=new Cookie(partida.getJugador().getNombre(),Integer.toString(partida.getIntentos().size()));
@@ -82,14 +57,11 @@ public class PartidaScoreController {
 			response.addCookie(cookie);
 		}
 		
-		//actualiza mejor jugador del mundo mundial (sistema)
-		
+		//actualiza mejor jugador del mundo mundial (sistema)		
 		if ((mejorJugador==null)||(scoreActual<mejorJugador.getMejorScore()))
 			//mejorJugador=jugador;
 			request.getServletContext().setAttribute("mejorJugador", jugador); 
 		
-		
-		//return new ModelAndView("/views/gano.jsp");
 		return new ModelAndView("/views/partida.jsp");//todo: devolver del forward;
 	}
 	

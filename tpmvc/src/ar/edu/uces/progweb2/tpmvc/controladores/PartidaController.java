@@ -41,26 +41,14 @@ public class PartidaController {
 		@Autowired
 		private IntentoValidador intentoValidador;
 
-
-		//@Autowired
-		//private SessionLocaleResolver localeResolver;
-		/*
-		@RequestMapping(value = "/juego")
-		public String init() {
-			return "/views/index.jsp";
-		}
-	 	*/
-
 		@RequestMapping(value = "/jugador/iniciarPartida")
 		public ModelAndView iniciarPartida(@ModelAttribute("jugador") Jugador jugador) {
 			
 			ModelAndView mv;
-			//todo:validar que haya jugador
 			
-			if (jugador==null) {
+			if (jugador==null) {//valida que haya jugador
 				mv=new ModelAndView("/identificarJugador.jsp");
 			} else {
-//				Partida partida=new Partida(jugador);
 				Partida partida=new Partida(jugador);
 				mv=new ModelAndView("/views/partida.jsp");
 				mv.addObject("intento", new Intento());
@@ -68,53 +56,29 @@ public class PartidaController {
 			}
 			return mv;
 		}
-		/*
-		@RequestMapping(value = "/reIniciarPartida")
-		public ModelAndView reIniciarPartida(@ModelAttribute("partida") Partida partida) {
-			
-			Jugador jugador=partida.getJugador();
-			//todo:validar que haya jugador
-			partida=new Partida(jugador);
-			ModelAndView mv=new ModelAndView("/views/partida.jsp");
-			mv.addObject("intento", new Intento());
-			mv.addObject("partida", partida);
-			return mv;
-		}
-		*/
+
 		@RequestMapping(value = "/partida/procesarIntento")	
 		public ModelAndView procesarIntento(@ModelAttribute("intento") Intento intento, BindingResult result, @ModelAttribute("partida") Partida partida , SessionStatus status) {
 			//todo: validar que haya partida
-
-			
-			if(partida.getIntentos().size()<10)
+			if(partida.getIntentos().size()<10) //todo: redundante?
 			{
 				if(partida.getNumeroADescubrir()!=0)//la partida esta en curse
 				{
 					this.intentoValidador.validate(intento, result);	
 					if (result.hasErrors()) {
-						
-						
 						return new ModelAndView("/views/partida.jsp");
 					}
 					if (partida.addIntento(intento)==true) {//devuelve true si el intento es correcto (gano)					
 						return new ModelAndView("/partida/persistirScore.do");
 					} else {
-						//
-						ModelAndView mv;
-						mv=new ModelAndView("/views/partida.jsp");
-						//mv.addObject("partida", partida);
-						mv.addObject("intento", new Intento());
-						return mv;
+						return new ModelAndView("/views/partida.jsp","intento", new Intento());
 					}
 				} else {
 					ModelAndView mv;
 					mv=new ModelAndView("/views/partida.jsp");
-					//mv.addObject("partida", partida);
-					//mv.addObject("intento", new Intento());
 					return mv;
 				}	
 			} else	{
-				//return new ModelAndView("/views/perdio.jsp","jugador",partida.getJugador());
 				return new ModelAndView("/views/partida.jsp");
 			}
 		}

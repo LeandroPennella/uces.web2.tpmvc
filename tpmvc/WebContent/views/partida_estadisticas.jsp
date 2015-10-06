@@ -9,7 +9,7 @@
 </head>
 <body>
 <div class="bs-example">
-	<h2><fmt:message key="estadisticas"/></h2>
+	<h3><fmt:message key="estadisticasPersonales"/></h3>
 	<table class="table table-striped">
 	<tr><td>
 		<b><fmt:message key="estadisticas.label.marcaSesion"/></b>
@@ -29,7 +29,14 @@
 		</c:forEach>
 		<c:out value="${mejorMarcaEnMaquina<10?mejorMarcaEnMaquina :'N/A'}"></c:out>
 		
-	</td></tr><tr><td>
+	</td></tr>
+	</table>
+	
+	<br><hr/><br>
+	
+	<h3><fmt:message key="estadisticasGenerales"/></h3>
+	<table class="table table-striped">
+	<tr><td>
 		<b><fmt:message key="estadisticas.label.jugadorNavegador"/></b>
 
 		</td></tr><tr><td>
