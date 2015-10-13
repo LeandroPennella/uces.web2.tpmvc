@@ -7,7 +7,7 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
 		
 		<div class="navbar-header">
- 			<img alt="" src="../imagenes/Roulette.gif">
+ 			<!-- <img alt="" src="../imagenes/Roulette.gif"> -->
 			<a class=" navbar-brand" href="#"><fmt:message key="titulo"></fmt:message></a>
 		</div>
 		
